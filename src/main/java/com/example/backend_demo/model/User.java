@@ -2,18 +2,18 @@ package com.example.backend_demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class User {
 
     @Id
@@ -32,6 +32,8 @@ public class User {
 
     private String mobile;
 
+    @OneToOne(mappedBy = "user")
+    private Cart Cart;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Address> address = new ArrayList<>();

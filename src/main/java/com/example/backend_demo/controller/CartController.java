@@ -30,7 +30,7 @@ public class CartController {
     public ResponseEntity<Cart> findUserCart(@RequestHeader("Authorization") String jwt) throws UserException {
         User user = userService.findUserProfileByJwt(jwt);
         Cart cart = cartService.findUserCart(user.getId());
-        return new ResponseEntity<>(cart, HttpStatus.OK);
+        return new ResponseEntity<Cart>(cart, HttpStatus.OK);
     }
 
     @PutMapping("/add")
@@ -39,6 +39,10 @@ public class CartController {
                                                      @RequestHeader("Authorization") String jwt)
             throws UserException, ProductException {
         User user = userService.findUserProfileByJwt(jwt);
+        Cart cart = cartService.findUserCart(user.getId());
+        if (cart == null) {
+            Cart newCart = cartService.createCart(user);
+        }
         cartService.addCartItem(user.getId(), request);
 
         ApiResponse response = new ApiResponse("Item added to cart", true);

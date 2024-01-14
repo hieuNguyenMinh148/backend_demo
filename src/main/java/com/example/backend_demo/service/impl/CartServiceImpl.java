@@ -30,6 +30,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public String addCartItem(Long userId, AddItemRequest request) throws ProductException {
         Cart cart = cartRepository.findByUserId(userId);
+
         Product product = productService.findProductById(request.getProductId());
 
         CartItem isPresent = cartItemService.isCartItemExist(cart, product, request.getSize(), userId);
@@ -46,8 +47,8 @@ public class CartServiceImpl implements CartService {
 
             CartItem createdCartItem = cartItemService.createCartItem(cartItem);
             cart.getCartItems().add(createdCartItem);
-            System.out.println(cart);
-            cartRepository.save(cart);
+            //            System.out.println(cart);
+            //            cartRepository.save(cart);
         }
         return "Item Added to Cart";
     }
@@ -61,15 +62,15 @@ public class CartServiceImpl implements CartService {
         int totalItem = 0;
 
         for (CartItem cartItem : cart.getCartItems()) {
-            totalDiscountedPrice = totalDiscountedPrice + cartItem.getDiscountedPrice();
             totalPrice = totalPrice + cartItem.getPrice();
+            totalDiscountedPrice = totalDiscountedPrice + cartItem.getDiscountedPrice();
             totalItem = totalItem + cartItem.getQuantity();
         }
 
         cart.setTotalItem(totalItem);
         cart.setTotalDiscountedPrice(totalDiscountedPrice);
         cart.setTotalPrice(totalPrice);
-        cart.setTotalDiscountedPrice(totalPrice - totalDiscountedPrice);
+        cart.setDiscounted(totalPrice - totalDiscountedPrice);
 
         return cartRepository.save(cart);
     }
