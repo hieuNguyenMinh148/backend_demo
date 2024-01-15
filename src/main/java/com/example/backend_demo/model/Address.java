@@ -28,12 +28,13 @@ public class Address {
 
     private String zipCode;
 
-    @OneToOne(mappedBy = "shippingAddress")
-    private Order order;
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "shippingAddress")
+//    private Order order;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnore
     private User user;
 
     private String mobile;
