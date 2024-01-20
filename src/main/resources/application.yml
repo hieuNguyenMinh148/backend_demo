@@ -1,0 +1,25 @@
+
+#spring.jpa.hibernate.ddl-auto=update
+#spring.datasource.url=jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:ecommerce}
+#spring.datasource.username=root
+#spring.datasource.password=DB_PASSWORD
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.jpa.show-sql=true
+
+
+spring:
+  application:
+    name: todo-app
+  datasource:
+    url: jdbc:postgresql://dpg-cmlm0s0cmk4c73dsdds0-a:5432/ecommerce_demo_8asr
+    password: rgoV4ujxUVDGqgWYiO4VboBLBImQS85R
+    username: ecommerce_demo_8asr_user
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true

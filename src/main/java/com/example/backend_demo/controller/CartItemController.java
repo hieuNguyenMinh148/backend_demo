@@ -4,6 +4,7 @@ import com.example.backend_demo.exeption.CartItemException;
 import com.example.backend_demo.exeption.UserException;
 import com.example.backend_demo.model.CartItem;
 import com.example.backend_demo.model.User;
+import com.example.backend_demo.request.UpdateCartItemRequest;
 import com.example.backend_demo.response.ApiResponse;
 import com.example.backend_demo.service.CartItemService;
 import com.example.backend_demo.service.UserService;

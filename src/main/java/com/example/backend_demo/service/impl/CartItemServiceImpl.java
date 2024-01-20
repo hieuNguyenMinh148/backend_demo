@@ -8,6 +8,7 @@ import com.example.backend_demo.model.Product;
 import com.example.backend_demo.model.User;
 import com.example.backend_demo.repository.CartItemRepository;
 import com.example.backend_demo.repository.CartRepository;
+import com.example.backend_demo.request.UpdateCartItemRequest;
 import com.example.backend_demo.service.CartItemService;
 import com.example.backend_demo.service.UserService;
 import lombok.RequiredArgsConstructor;

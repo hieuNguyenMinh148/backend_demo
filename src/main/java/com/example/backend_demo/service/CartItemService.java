@@ -5,6 +5,7 @@ import com.example.backend_demo.exeption.UserException;
 import com.example.backend_demo.model.Cart;
 import com.example.backend_demo.model.CartItem;
 import com.example.backend_demo.model.Product;
+import com.example.backend_demo.request.UpdateCartItemRequest;
 
 public interface CartItemService {
     public CartItem createCartItem(CartItem cartItem);
