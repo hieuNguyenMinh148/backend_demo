@@ -8,6 +8,7 @@ import com.example.backend_demo.repository.ProductRepository;
 import com.example.backend_demo.request.CreateProductRequest;
 import com.example.backend_demo.service.ProductService;
 import com.example.backend_demo.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -34,7 +35,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product crateProduct(CreateProductRequest request) {
+    public List<Product> findAllProductsByCategory(String category) {
+        return productRepository.findAllByCategory(category);
+    }
+
+    @Override
+    @Transactional
+    public Product createProduct(CreateProductRequest request) {
 
         Category topLevel = categoryRepository.findByName(request.getTopLevelCategory());
         if (topLevel == null) {
@@ -80,7 +87,7 @@ public class ProductServiceImpl implements ProductService {
         product.setCreatedAt(LocalDateTime.now());
 
         Product savedProduct = productRepository.save(product);
-        System.out.println(product);
+//        System.out.println(product);
 
         return savedProduct;
     }

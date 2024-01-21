@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,12 @@ public class ProductController {
                                                                       @RequestParam String sort, @RequestParam String stock,
                                                                       @RequestParam Integer pageNumber, @RequestParam Integer pageSize) {
         Page<Product> response = productService.getAllProduct(category, color, size, minPrice, maxPrice, minDiscount, sort, stock, pageNumber, pageSize);
-        System.out.println("complete products");
+        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/products/{category}")
+    public ResponseEntity<List<Product>> findAllProductByCategoryHandler(@PathVariable String category) {
+        List<Product> response = productService.findAllProductsByCategory(category);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 

@@ -25,8 +25,8 @@ public class AppConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests(
-                        Authorize->Authorize.requestMatchers("/api/**")
-                                .authenticated()
+                        Authorize->Authorize.requestMatchers("/api/products/**").permitAll() // Cho phép mọi người truy cập /api/products mà không cần xác thực
+                                .requestMatchers("/api/**").authenticated() // Các đường dẫn còn lại đều yêu cầu xác thực
                                 .anyRequest().permitAll())
                 .addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)
                 .csrf().disable()

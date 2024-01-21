@@ -10,7 +10,9 @@ import java.util.List;
 public interface ProductService {
     public List<Product> findAllProducts();
 
-    public Product crateProduct(CreateProductRequest request);
+    public List<Product> findAllProductsByCategory(String category);
+
+    public Product createProduct(CreateProductRequest request);
 
     public String deleteProduct(Long id) throws ProductException;
 

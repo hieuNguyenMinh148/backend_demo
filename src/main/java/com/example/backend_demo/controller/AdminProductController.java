@@ -20,7 +20,7 @@ public class AdminProductController {
 
     @PostMapping("/")
     public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequest request) {
-        Product product = productService.crateProduct(request);
+        Product product = productService.createProduct(request);
         return new ResponseEntity<Product>(product, HttpStatus.CREATED);
     }
 
@@ -46,10 +46,10 @@ public class AdminProductController {
         return new ResponseEntity<Product>(product, HttpStatus.CREATED);
     }
 
-    @PostMapping("/creates")
+    @PostMapping("/create-multiple")
     public ResponseEntity<ApiResponse> createMultipleProduct(@RequestBody CreateProductRequest[] request) {
         for (CreateProductRequest productRequest : request) {
-            productService.crateProduct(productRequest);
+            productService.createProduct(productRequest);
         }
         ApiResponse response = new ApiResponse("All Product created successfully", true);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
